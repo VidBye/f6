@@ -2,12 +2,23 @@
     "builds": [
         {
             "src": "ReelsBuilder/wsgi.py",
-            "use": "@vercel/python"
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "runtime": "python3.9"
+            }
+        },
+        {
+            "src": "build_files.sh",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "staticfiles"
+            }
         }
     ],
     "routes": [
-        { "src": "/static/(.*)", "dest": "/static/$1" },
-        { "src": "/media/(.*)", "dest": "/static/media/$1" },
+        { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
+        { "src": "/media/(.*)", "dest": "/staticfiles/media/$1" },
         { "src": "/(.*)", "dest": "/ReelsBuilder/wsgi.py" }
     ],
     "env": {
