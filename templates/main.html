@@ -1,0 +1,118 @@
+{% load static %}
+
+
+<!-- this html page acts as a parent for all other pages and it contain header , nav bar and fotter -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% block meta_content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock %}
+
+    <title>{% block title %}ReelsBuilder{% endblock %}</title>
+
+    {% block static_url %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/show_toast.css' %}">
+    <link rel="stylesheet" href="{% static 'css/video_generator.css' %}">
+
+    <link rel="icon" href="{% static 'media/icons/icon.svg' %}" type="image/x-icon" />
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+
+    <div class="row-container" id="topbar">
+        <div class="raw-container" id="logo">
+            <a href="{% url 'home' %}">
+                <img height="50" width="auto" src="{% static 'media/icons/logo.png' %}"/>
+            </a>
+        </div>
+        <div class="raw-container" id="pages">
+            <a class="link-text" href="{% url 'video_generator' %}">Features</a>
+            <a class="link-text" href="{% url 'pricing' %}">Pricing</a>
+    </div>
+       
+        {% block login_nav %}
+        <div class="raw-container" id="login">
+            
+            {% if request.user.is_authenticated %}
+            <div class ="profile_dropdown">
+                <a class="main-button" id ="proflie_icon" onclick="profile_click()">Profile</a>
+                <ul class ="profile_item_disabled" id ="profile_dropdown_list" >
+                    <li>
+                        <a  href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                    </li>
+                </ul>
+                <!-- Logout form with POST method -->
+                <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                    {% csrf_token %}
+                </form>
+            </div>
+            
+
+            {% else %}
+            <a class="main-button" href="{% url 'login'  %}">Join here</a>
+            {% endif %}
+            
+        </div>
+        {% endblock %}
+
+        <!-- Inside the topbar div -->
+        <div class="raw-container" id="mobile-menu">
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+            <div id="dropdown" class="dropdown-content">
+                <a class="link-text" href="{% url 'video_generator' %}">Features</a>
+                <a class="link-text" href="{% url 'pricing' %}">Pricing</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    {% block body_content %}  
+      <!-- this is for writting code in body where navbar excluded -->
+     {% endblock %}
+
+     <!-- this is footer section -->
+<div class="footer">
+    <a href="{% url 'home' %}" class="mg"><img height="50" width="auto" src="{% static 'media/icons/logo.png' %}"></a>
+    <div class="row-container mg">
+        <a class="link-text" href="{% url 'video_generator' %}"><span>Features</span></a>
+        <a class="link-text" href="{% url 'pricing' %}"><span>Pricing</span></a>
+    </div>
+    <span class="mg">©Copyright {% now "Y" %} ReelsBuilder</span>
+</div>
+
+
+
+{% block script %}
+<script src="{% static 'js/video_generator.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/google_login.js' %}"></script>
+<script src="{% static 'js/show_toast.js' %}"></script>
+
+{% endblock %}
+
+</body>
+
+</html>

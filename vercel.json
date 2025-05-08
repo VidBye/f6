@@ -1,0 +1,18 @@
+{
+    "builds": [
+        {
+            "src": "ReelsBuilder/wsgi.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        { "src": "/static/(.*)", "dest": "/static/$1" },
+        { "src": "/media/(.*)", "dest": "/static/media/$1" },
+        { "src": "/(.*)", "dest": "/ReelsBuilder/wsgi.py" }
+    ],
+    "env": {
+        "PYTHONUNBUFFERED": "1",
+        "DEBUG": "false",
+        "TELEGRAM_BOT_TOKEN": ""
+    }
+}

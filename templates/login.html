@@ -1,0 +1,132 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block static_url %}
+{{ block.super }}
+<link href="{% static 'css/auth_forms.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body_content %}
+
+<section class="l-section l-section--blue-1  l-last-section l-padding-top--40">
+    <div class="page-tabs l-section--center l-row--800">
+        <div class="title">
+            <div class="links">
+                <a href="{% url 'login'  %}" id="login" data-name="login" class="current">Login</a>
+                <a href="{% url 'signup' %}" id="signup" data-name="signup">Sign Up</a>
+            </div>
+        </div>
+        <div class="l-section l-section--center l-padding-top--40 tab new-user l-row--800" id="cc-register-viewport">
+            <div class="l-row">
+
+                <h2 class="m-head__23">Already have an account?</h2>
+
+                <div class="ccl-su-disable" cc-forms="form-overlay"></div>
+                <div class="set-display-form">
+                    <div class="ccl-ns-content  l-row--320">
+                        <p class="m-para m-para--600">Use Social Media Credentials</p>
+                        <div class="l-oauth-buttons" id="oauth-buttons">
+                            <li>
+                                <a href="{% url 'social:begin' 'google-oauth2' %}"
+                                    class="icon-social oauth_button oauth_button-medium connect"
+                                    title="Signup/Login with Google" id="button_google">
+                                </a>
+                            </li>
+                        </div>
+                        <p class="m-oauth-divider">
+                            <span class="l-oauth-divider"></span>OR<span class="l-oauth-divider"></span>
+                        </p>
+
+                        <!-- error message -->
+                        {% if error_message %}
+                        <p class="error-text"><b>{{error_message}}</b></p>
+                        {% endif %}
+                        
+                        <!-- success message -->
+                        {% if success_message %}
+                        <p class="success-text"><b>{{success_message}}</b></p>
+                        {% endif %}
+
+                        <form action="" accept-charset="UTF-8" method="post" id="ajax-login-form" class="l-form">
+                            {% csrf_token %}
+                            <div>
+                                <div class="ccl-margin-sm">
+                                    <div class="ccl-su-position-rel">
+                                        <div class="form-item" id="edit-name-wrapper">
+                                            <label for="edit-name">Email: <span class="form-required"
+                                                    title="This field is required.">*</span></label>
+                                            <input type="text" maxlength="128" name="name" id="edit-name" size="60"
+                                                value="" description="1" tabindex="1" autofocus="" data="1"
+                                                class="form-text required ccl-f-placeholder ccl-f-input"
+                                                autocomplete="none">
+                                            <div class="hidden-element" cc-forms="form-field-description"
+                                                class="ccl-su-help-position">
+                                                <div class="ccl-su-help">
+                                                    <div class="ccl-font-s ccl-align-l">
+                                                        <div cc-forms="description" class="l-card-hint"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ccl-margin-sm">
+                                    <div class="ccl-su-position-rel">
+                                        <div class="toggle-password-login i-eye-mask-icon">
+                                            <p class="m-eye-icon-supporting-text" id="toggle-text-login">Show</p>
+                                        </div>
+                                        <div class="form-item" id="edit-pass-wrapper">
+                                            <label for="edit-pass">Password: <span class="form-required"
+                                                    title="This field is required.">*</span></label>
+                                            <input type="password" name="pass" id="edit-pass" maxlength="128" size="60"
+                                                description="1" tabindex="2" data="1"
+                                                class="form-text required ccl-f-placeholder ccl-f-input password-login"
+                                                autocomplete="none">
+                                            <div class="hidden-element" cc-forms="form-field-description"
+                                                class="ccl-su-help-position">
+                                                <div class="ccl-su-help">
+                                                    <div class="ccl-font-s ccl-align-l">
+                                                        <div cc-forms="description" class="l-card-hint"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ccl-margin-s"><input type="submit" name="op" id="edit-submit-button"
+                                        value="Login" class="ccl-f-input ccl-float-right cc-login-btn form-control"
+                                        tabindex="3" autocomplete="none">
+                                </div>
+                                <p class="m-help__text l-margin-top-28">
+                                    Don't have an account? <a href="{% url 'signup' %}" class="m-list__link">Sign up here</a>
+                                </p>
+                                <p class="m-help__text">
+                                    <a href="{% url 'password_reset' %}" class="m-list__link">Forgot password?</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle password visibility for login form
+        const togglePasswordLogin = document.querySelector('.toggle-password-login');
+        const passwordFieldLogin = document.querySelector('.password-login');
+        const toggleTextLogin = document.getElementById('toggle-text-login');
+        
+        if (togglePasswordLogin) {
+            togglePasswordLogin.addEventListener('click', function() {
+                const type = passwordFieldLogin.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordFieldLogin.setAttribute('type', type);
+                toggleTextLogin.textContent = type === 'password' ? 'Show' : 'Hide';
+            });
+        }
+    });
+</script>
+
+{% endblock %}

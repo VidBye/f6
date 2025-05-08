@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block static_url %}
+{{ block.super }}
+<link href="{% static 'css/video.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body_content %}
+<main class="column-container">
+    <div id="about" class="main row-container feature">
+        <div class="header row-container">
+            <div class="slide selected">
+                <h2>Quote</h2>
+            </div>
+            <div class="slide not-selected">
+                <h2>Settings</h2>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

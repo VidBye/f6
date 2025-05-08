@@ -1,0 +1,154 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block static_url %}
+{{ block.super }}
+<link href="{% static 'css/auth_forms.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body_content %}
+
+<section class="l-section l-section--blue-1 l-last-section l-padding-top--40">
+    <div class="page-tabs l-section--center l-row--800">
+        <div class="title">
+            <div class="links">
+                <a href="{% url 'login' %}" id="login" data-name="login">Login</a>
+                <a href="{% url 'signup' %}" id="signup" data-name="signup" class="current">Sign Up</a>
+            </div>
+        </div>
+        <div class="l-section l-section--center l-padding-top--40 tab new-user l-row--800" id="cc-register-viewport">
+            <div class="l-row">
+
+                <h2 class="m-head__23">Create a new account</h2>
+
+                <div class="ccl-su-disable" cc-forms="form-overlay"></div>
+                <div class="set-display-form">
+                    <div class="ccl-ns-content l-row--320">
+                        <p class="m-para m-para--600">Use Social Media Credentials</p>
+                        <div class="l-oauth-buttons" id="oauth-buttons">
+                            <li>
+                                <a href="{% url 'social:begin' 'google-oauth2' %}"
+                                    class="icon-social oauth_button oauth_button-medium connect"
+                                    title="Signup/Login with Google" id="button_google">
+                                </a>
+                            </li>
+                        </div>
+                        <p class="m-oauth-divider">
+                            <span class="l-oauth-divider"></span>OR<span class="l-oauth-divider"></span>
+                        </p>
+
+                        <!-- error message -->
+                        {% if error_message %}
+                        <p class="error-text"><b>{{error_message}}</b></p>
+                        {% endif %}
+                        
+                        <!-- success message -->
+                        {% if success_message %}
+                        <p class="success-text"><b>{{success_message}}</b></p>
+                        {% endif %}
+
+                        <form action="" accept-charset="UTF-8" method="post" id="ajax-signup-form" class="l-form">
+                            {% csrf_token %}
+                            <div>
+                                <div class="ccl-margin-sm">
+                                    <div class="ccl-su-position-rel">
+                                        <div class="form-item" id="edit-username-wrapper">
+                                            <label for="edit-username">Username: <span class="form-required"
+                                                    title="This field is required.">*</span></label>
+                                            <input type="text" maxlength="128" name="username" id="edit-username" size="60"
+                                                value="" description="1" tabindex="1" autofocus="" data="1"
+                                                class="form-text required ccl-f-placeholder ccl-f-input"
+                                                autocomplete="none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ccl-margin-sm">
+                                    <div class="ccl-su-position-rel">
+                                        <div class="form-item" id="edit-email-wrapper">
+                                            <label for="edit-email">Email: <span class="form-required"
+                                                    title="This field is required.">*</span></label>
+                                            <input type="email" maxlength="128" name="email" id="edit-email" size="60"
+                                                value="" description="1" tabindex="2" data="1"
+                                                class="form-text required ccl-f-placeholder ccl-f-input"
+                                                autocomplete="none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ccl-margin-sm">
+                                    <div class="ccl-su-position-rel">
+                                        <div class="toggle-password-signup i-eye-mask-icon">
+                                            <p class="m-eye-icon-supporting-text" id="toggle-text-signup">Show</p>
+                                        </div>
+                                        <div class="form-item" id="edit-pass-wrapper">
+                                            <label for="edit-pass">Password: <span class="form-required"
+                                                    title="This field is required.">*</span></label>
+                                            <input type="password" name="password" id="edit-pass" maxlength="128" size="60"
+                                                description="1" tabindex="3" data="1"
+                                                class="form-text required ccl-f-placeholder ccl-f-input password-signup"
+                                                autocomplete="none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ccl-margin-sm">
+                                    <div class="ccl-su-position-rel">
+                                        <div class="toggle-password-confirm i-eye-mask-icon">
+                                            <p class="m-eye-icon-supporting-text" id="toggle-text-confirm">Show</p>
+                                        </div>
+                                        <div class="form-item" id="edit-confirm-pass-wrapper">
+                                            <label for="edit-confirm-pass">Confirm Password: <span class="form-required"
+                                                    title="This field is required.">*</span></label>
+                                            <input type="password" name="confirm_password" id="edit-confirm-pass" maxlength="128" size="60"
+                                                description="1" tabindex="4" data="1"
+                                                class="form-text required ccl-f-placeholder ccl-f-input password-confirm"
+                                                autocomplete="none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ccl-margin-s">
+                                    <input type="submit" name="op" id="edit-submit-button"
+                                        value="Sign Up" class="ccl-f-input ccl-float-right cc-login-btn form-control"
+                                        tabindex="5" autocomplete="none">
+                                </div>
+                                <p class="m-help__text l-margin-top-28">
+                                    Already have an account? <a href="{% url 'login' %}" class="m-list__link">Login here</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle password visibility for password field
+        const togglePasswordSignup = document.querySelector('.toggle-password-signup');
+        const passwordFieldSignup = document.querySelector('.password-signup');
+        const toggleTextSignup = document.getElementById('toggle-text-signup');
+        
+        if (togglePasswordSignup) {
+            togglePasswordSignup.addEventListener('click', function() {
+                const type = passwordFieldSignup.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordFieldSignup.setAttribute('type', type);
+                toggleTextSignup.textContent = type === 'password' ? 'Show' : 'Hide';
+            });
+        }
+        
+        // Toggle password visibility for confirm password field
+        const togglePasswordConfirm = document.querySelector('.toggle-password-confirm');
+        const passwordFieldConfirm = document.querySelector('.password-confirm');
+        const toggleTextConfirm = document.getElementById('toggle-text-confirm');
+        
+        if (togglePasswordConfirm) {
+            togglePasswordConfirm.addEventListener('click', function() {
+                const type = passwordFieldConfirm.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordFieldConfirm.setAttribute('type', type);
+                toggleTextConfirm.textContent = type === 'password' ? 'Show' : 'Hide';
+            });
+        }
+    });
+</script>
+
+{% endblock %} 

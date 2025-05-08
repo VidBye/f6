@@ -1,0 +1,92 @@
+{% extends 'main.html' %}
+
+{% block body_content %}
+<main class="column-container">
+    <div id="profile-settings" class="main column-container feature">
+        <div class="header">
+            <div class="row-container header2">
+                <h3>Profile Settings</h3>
+                <a class="main-button" href="{% url 'dashboard' %}">Dashboard</a>
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="profile-settings-container">
+            <div class="profile-image-section">
+                <h4>Profile Image</h4>
+                <div class="profile-image-container">
+                    {% if user_info.profile_image %}
+                    <img src="{{ user_info.profile_image }}" alt="Profile Image" id="profile-image-preview">
+                    {% else %}
+                    <div class="no-profile-image" id="profile-image-preview">
+                        {{ user.username|first|upper }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <form id="profile-image-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="profile_image" id="profile-image-input" accept="image/*">
+                    <button type="submit" class="main-button">Upload Image</button>
+                </form>
+            </div>
+
+            <div class="user-info-section">
+                <h4>User Information</h4>
+                <div class="user-info-item">
+                    <strong>Username:</strong> {{ user.username }}
+                </div>
+                <div class="user-info-item">
+                    <strong>Email:</strong> {{ user_info.user_email }}
+                </div>
+                <div class="user-info-item">
+                    <strong>Subscription:</strong> {{ user_info.subscription_status }}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('profile-image-form');
+        const imagePreview = document.getElementById('profile-image-preview');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            
+            fetch('{% url "upload_profile_image" %}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the image preview
+                    if (imagePreview.tagName === 'IMG') {
+                        imagePreview.src = data.image_url;
+                    } else {
+                        // Replace the placeholder with an image
+                        const newImg = document.createElement('img');
+                        newImg.src = data.image_url;
+                        newImg.alt = 'Profile Image';
+                        newImg.id = 'profile-image-preview';
+                        imagePreview.parentNode.replaceChild(newImg, imagePreview);
+                    }
+                    
+                    // Show success message
+                    alert('Profile image uploaded successfully!');
+                } else {
+                    alert('Failed to upload profile image');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while uploading the profile image');
+            });
+        });
+    });
+</script>
+{% endblock %} 

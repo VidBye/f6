@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block static_url %}
+{{ block.super }}
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+<link href="{% static 'css/auth_forms.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body_content %}
+<main class="column-container">
+    <p class="welcome-message">welcome : {{user_info.user_email}}</p>
+    <div id="about" class="main column-container feature">
+        <div class="header">
+            <div class="row-container header2">
+                <h3>My videos</h3>
+                <a class="main-button" href="{% url 'video_generator' %}">Create</a>
+            </div>
+            <div class="limit">
+                {{video_count}}/5 VIDEOS
+                <a href="{% url 'pricing' %}" class="main-button">Upgrade</a>
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <table class="profile_video_info_table">
+            <tr>
+                <th>Video ID</th>
+                <th>Download Link</th>
+                <th>Country</th>
+            </tr>
+            {% for video_info in user_info.user_video.all %}
+            <tr>
+                <td>{{video_info.video_id}}</td>
+                <td>{{video_info.download_link}}</td>
+                <td>{{video_info.time_created}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock %}

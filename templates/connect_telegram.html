@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block body_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2>Connect with Telegram</h2>
+                </div>
+                <div class="card-body">
+                    {% if error_message %}
+                    <div class="alert alert-danger">
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+                    
+                    {% if success_message %}
+                    <div class="alert alert-success">
+                        {{ success_message }}
+                    </div>
+                    {% endif %}
+                    
+                    <p>Connect your ReelsBuilder account with Telegram to receive notifications about your videos, account updates, and more.</p>
+                    
+                    <ol class="mb-4">
+                        <li>Start a chat with our bot: <a href="https://t.me/ReelsBuilderBot" target="_blank">@ReelsBuilderBot</a></li>
+                        <li>Send the command <code>/start</code> to the bot</li>
+                        <li>The bot will reply with your Chat ID</li>
+                        <li>Copy your Chat ID and paste it below</li>
+                    </ol>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="telegram_chat_id">Your Telegram Chat ID:</label>
+                            <input type="text" class="form-control" id="telegram_chat_id" name="telegram_chat_id" 
+                                   value="{{ user_info.telegram_chat_id|default:'' }}" placeholder="e.g., 123456789">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary mt-3">Connect Telegram</button>
+                    </form>
+                    
+                    {% if user_info.telegram_chat_id %}
+                    <div class="mt-4">
+                        <h4>Already Connected</h4>
+                        <p>Your account is already connected to Telegram with Chat ID: <code>{{ user_info.telegram_chat_id }}</code></p>
+                        <p>You can update it by entering a new Chat ID above.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

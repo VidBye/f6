@@ -1,0 +1,22 @@
+{% extends 'email/base_email.html' %}
+
+{% block email_title %}Verify Your Email{% endblock %}
+
+{% block header_title %}Email Verification{% endblock %}
+
+{% block email_content %}
+<p>Hello {{ user.username }},</p>
+
+<p>Thank you for registering with ReelsBuilder. To complete your registration and verify your email address, please click the button below:</p>
+
+<div class="button-container">
+    <a href="{{ verification_url }}" class="button">Verify Email Address</a>
+</div>
+
+<p>Or copy and paste the following URL into your browser:</p>
+<p style="word-break: break-all; font-size: 12px;">{{ verification_url }}</p>
+
+<p>This verification link will expire in 24 hours.</p>
+
+<p>If you did not sign up for a ReelsBuilder account, please disregard this email.</p>
+{% endblock %} 
