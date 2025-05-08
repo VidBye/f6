@@ -1,0 +1,430 @@
+
+#id_email{
+
+width: 100%;
+}
+
+
+.profile_dropdown{
+  position: relative;
+}
+.profile_item{
+  width: 100px;
+  position: absolute;
+  transform: translate(-50%,15%);
+  left: 50%;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 2px 2px 10px rgb(0 0 0 / 50%);
+}
+.profile_item li{
+  list-style: none;
+  padding: 10px;
+  border-bottom: 1px dashed #0000002e;
+}
+.profile_item_disabled
+{
+  display: none;
+}
+.profile_item li:last-child{
+  border-bottom: none;
+}
+
+.profile_item li a{
+  color: rgba(0, 0, 0, 0.591);
+}
+/* .profile_item li::after{
+  width: 100%;
+  content: '';
+  height: 1px;
+  background: rgba(128, 128, 128, 0.631);
+  display: block;
+}
+.profile_item li:last-child::after{
+  width: 0%;
+} */
+
+.set-display-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.m-para {
+  font-size:16px;
+  text-align:left;
+  letter-spacing:0;
+  color:#4a4a4a;
+  opacity:1;
+  font-weight:400;
+  line-height:28px;
+  margin-bottom:24px
+}
+.m-para--600 {
+  font-weight:600!important;
+  font-size:14px!important;
+  line-height:24px!important
+}
+.m-eye-icon-supporting-text {
+  color:#4b7abd;
+  font-size:14px;
+  position:relative;
+  left:24px
+}
+.m-help__text {
+  font-size:12px
+}
+.m-head__23 {
+  font-size:20px;
+  line-height:36px;
+  letter-spacing:0;
+  color:#4a4a4a;
+  font-weight:300;
+  margin-bottom:16px;
+  text-align: center;
+
+}
+.m-list__link {
+  color:#0d61b5;
+  text-decoration:underline
+}
+.no-ads-premium-strip .title {
+  font-family:'Open Sans',serif;
+  font-weight:400;
+  font-size:12px;
+  color:#4a4a4a
+}
+.l-section {
+  width:100%;
+  margin:0;
+  padding:80px 48px;
+  background:#fff
+}
+@media (max-width:599px) {  .l-section {
+    padding:64px 24px
+  }
+}
+@media (max-width:359px) {  .l-section {
+    padding-left:16px;
+    padding-right:16px
+  }
+}
+.l-section--blue-1 {
+  background:#e7edf4
+}
+.l-section--center {
+  margin-left:auto!important;
+  margin-right:auto!important
+}
+.l-padding-top--40 {
+  padding-top:40px!important
+}
+.l-row--320 {
+  max-width:320px!important
+}
+.l-row--800 {
+  max-width:600px!important
+}
+.l-margin-top-28 {
+  margin-top:28px!important
+}
+.m-forgot-password {
+  margin-top:12px;
+  display:inline-block
+}
+.l-form label {
+  font-size:14px;
+  line-height:16px;
+  font-weight:600;
+  letter-spacing:0;
+  color:#4a4a4a;
+  margin-bottom:4px;
+  display:block;
+  max-width:320px
+}
+.l-form div.error .l-card-hint {
+  background:#fcecec!important
+}
+.l-form .register-tooltip {
+  padding-left:12px
+}
+.l-form .ccl-su-help {
+  font-size:13px;
+  line-height:20px
+}
+.l-form .ccl-su-help strong {
+  font-size:inherit;
+  line-height:inherit;
+  font-weight:inherit
+}
+.l-form .ccl-su-help li {
+  font-size:inherit;
+  line-height:inherit;
+  margin-bottom:12px
+}
+.l-form .ccl-su-help li:last-child {
+  margin-bottom:0!important
+}
+.l-form .form-required {
+  font-size:12px;
+  opacity:.6;
+  color:#4a4a4a;
+  position:relative;
+  top:0;
+  left:2px
+}
+.l-form textarea {
+  height:144px
+}
+.l-form .captcha {
+  margin-top:16px
+}
+.l-form .captcha img {
+  margin-bottom:16px
+}
+.l-form .form-textarea,
+.l-form input[type=password],
+.l-form input[type=text],
+.l-form select {
+  background:#fff;
+  max-width:320px;
+  width:100%;
+  height:40px;
+  border:1px solid #dadada;
+  border-radius:2px;
+  padding:4px 40px 4px 10px;
+  font-size:14px;
+  color:rgba(74,74,74,.8)
+}
+.l-form .form-textarea:focus,
+.l-form input[type=password]:focus,
+.l-form input[type=text]:focus,
+.l-form select:focus {
+  border-color:#228af6;
+  color:#4a4a4a
+}
+.l-form .form-textarea {
+  height:128px
+}
+.l-form .form-item {
+  margin-top:32px
+}
+.l-form .option {
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-align:center;
+  align-items:center;
+  -ms-flex-pack:start;
+  justify-content:flex-start;
+  font-size:14px!important;
+  font-weight:400!important
+}
+.l-form .m-verification-box {
+  height:56px!important;
+  font-size:42px!important;
+  text-align:center!important;
+  letter-spacing:8px!important;
+  padding:4px 40px!important
+}
+@media (max-width:600px) {  .l-form .m-verification-box {
+    padding:4px 10px!important
+  }
+}
+.l-form input[type=radio] {
+  width:14px;
+  height:14px;
+  margin:0 10px 0 0
+}
+.l-form input[type=checkbox] {
+  width:24px;
+  height:24px;
+  margin:0 10px 0 0;
+  cursor:pointer
+}
+.l-form .m-form__checkbox {
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-pack:start;
+  justify-content:flex-start;
+  -ms-flex-align:center;
+  align-items:center;
+  margin-top:12px
+}
+.l-form .m-form__checkbox .m-checkbox-text,
+.l-form .m-form__checkbox label {
+  margin:0!important
+}
+.l-form .m-submit--blue,
+.l-form input[type=submit] {
+  line-height:40px;
+  display:-ms-inline-flexbox;
+  display:inline-flex;
+  -ms-flex-pack:center;
+  justify-content:center;
+  -ms-flex-align:center;
+  align-items:center;
+  padding:0 45px;
+  background: var(--orange-red);   
+  color: var(--white-smoke);
+  box-shadow:0 3px 6px ;
+  text-transform:uppercase;
+  letter-spacing:.42px;
+  border-radius:2px;
+  border:1px solid var(--orange-red);
+  white-space:nowrap;
+  font-size:12px;
+  cursor:pointer;
+  text-align: center;
+  transition: 250ms;
+  margin-top:24px
+}
+.l-form .m-submit--blue:disabled,
+.l-form input[type=submit]:disabled {
+  background:#78b5f2;
+  border:1px solid #78b5f2;
+  cursor:not-allowed
+}
+.l-form .m-submit--blue:hover:enabled,
+.l-form input[type=submit]:focus:enabled,
+.l-form input[type=submit]:hover:enabled {
+  background:#1e6ebe;
+  border:1px solid #1e6ebe
+}
+.l-form .m-form-desc {
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+  max-width:320px;
+  width:100%;
+  margin-top:8px;
+  color:rgba(74,74,74,.8)
+}
+.l-form .m-form-desc span {
+  color:inherit;
+  font-size:13px
+}
+.l-form .m-form-desc a {
+  font-size:14px
+}
+.form-item select.correct,
+.form-item select.error {
+  background-repeat:no-repeat!important;
+  background-position:96% 11px!important;
+  background-size:16px!important
+}
+.form-item select.correct {
+  border-color:#30ba35!important
+}
+.form-item select.error {
+  border-color:#f56969!important
+}
+.m-oauth-divider {
+  max-width:320px;
+  width:100%;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+  margin-bottom:16px;
+  -ms-flex-align:center;
+  align-items:center;
+  font-weight:600;
+  font-size:14px
+}
+.m-oauth-divider .l-oauth-divider {
+  width:40%;
+  border-bottom:1px solid #cecece;
+  opacity:.7
+}
+.l-oauth-buttons {
+  display:-ms-flexbox!important;
+  display:flex!important;
+  -ms-flex-pack:space-evenly;
+  justify-content:space-evenly;
+  margin-bottom:28px;
+  max-width:320px;
+  width:100%
+}
+.l-oauth-buttons #button_facebook,
+.l-oauth-buttons #button_github,
+.l-oauth-buttons #button_google {
+  display:-ms-inline-flexbox;
+  display:inline-flex;
+  width:48px;
+  height:48px;
+  box-shadow:0 2px 2px rgba(0,0,0,.25)
+}
+.l-oauth-buttons #button_google.connect {
+  background:url(https://cdn.codechef.com/images/icons/google-oauth.svg)
+}
+.l-oauth-buttons #button_google.disconnect {
+  box-shadow:none!important;
+  height:63px!important;
+  background:url(https://cdn.codechef.com/images/icons/google-oauth-disconnect.svg)!important
+}
+.l-oauth-buttons #button_github.connect {
+  background:url(https://cdn.codechef.com/images/icons/github-oauth.svg)
+}
+.l-oauth-buttons #button_github.disconnect {
+  height:63px!important;
+  box-shadow:none!important;
+  background:url(https://cdn.codechef.com/images/icons/github-oauth-disconnect.svg)!important
+}
+.l-oauth-buttons #button_facebook.connect {
+  background:url(https://cdn.codechef.com/images/icons/fb-oauth.svg)
+}
+.l-oauth-buttons #button_facebook.disconnect {
+  height:63px!important;
+  box-shadow:none!important;
+  background:url(https://cdn.codechef.com/images/icons/fb-oauth-disconnect.svg)!important
+}
+.l-oauth-buttons li {
+  list-style:none
+}
+.i-eye-mask-icon {
+  background-image:url(https://cdn.codechef.com/images/icons/eye-mask.svg)!important;
+  background:no-repeat;
+  cursor:pointer;
+  float:right;
+  margin-right:25px
+}
+.generic-dialog-box .content {
+  text-align:center!important
+}
+.page-tabs .title .links a {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 50%;
+  border-top: 3px solid #d9e2ed;
+  line-height: 54px;
+  text-align: center;
+  background: #D9E2ED;
+}
+.page-tabs .title .links {
+  display: flex;
+  width: 100%;;
+}
+.page-tabs .title .links a:hover {
+  color: #3b5998;
+}
+.page-tabs .title .links a.current {
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  border-top: 3px solid var(--orange-red); ;
+  border-bottom: none;
+  font-weight: 700;
+}
+.page-tabs .title .links a.current:hover {
+  color: #4a4a4a;
+}
+@media (max-width: 600px) {  .page-tabs .title .links {
+      max-width: 600px;
+  }
+
+  .page-tabs .title .links a {
+      font-size: 14px;
+  }
+}
